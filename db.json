@@ -37,15 +37,6 @@
       "categoryId": 2
     },
     {
-      "id": "5",
-      "title": "Read new book",
-      "description": "Finish reading the book 'The Alchemist'",
-      "completed": false,
-      "dueDate": "2024-10-01",
-      "userId": 2,
-      "categoryId": 2
-    },
-    {
       "id": "6",
       "title": "Exercise",
       "description": "Go for a 30-minute run",
@@ -206,6 +197,15 @@
       "dueDate": "29-11-23",
       "userId": "3",
       "categoryId": "3"
+    },
+    {
+      "id": 24,
+      "title": "amnaakhtar159@gmail.com",
+      "description": "amnaakhtar159@gmail.com",
+      "completed": false,
+      "dueDate": "amnaakhtar159@gmail.com",
+      "userId": "1",
+      "categoryId": "1"
     }
   ],
   "users": [
