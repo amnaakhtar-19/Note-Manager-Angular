@@ -1,0 +1,254 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "Buy groceries",
+      "description": "Milk, bread, eggs, and fruits",
+      "completed": false,
+      "dueDate": "2024-08-30",
+      "userId": 1,
+      "categoryId": 2
+    },
+    {
+      "id": "2",
+      "title": "Finish project report",
+      "description": "Complete the report for the quarterly project",
+      "completed": true,
+      "dueDate": "2024-08-25",
+      "userId": 2,
+      "categoryId": 1
+    },
+    {
+      "id": "3",
+      "title": "Book dentist appointment",
+      "description": "Call to schedule an appointment",
+      "completed": false,
+      "dueDate": "2024-09-05",
+      "userId": 1,
+      "categoryId": 3
+    },
+    {
+      "id": "4",
+      "title": "Plan birthday party",
+      "description": "Organize party details and send invitations",
+      "completed": false,
+      "dueDate": "2024-09-15",
+      "userId": 1,
+      "categoryId": 2
+    },
+    {
+      "id": "5",
+      "title": "Read new book",
+      "description": "Finish reading the book 'The Alchemist'",
+      "completed": false,
+      "dueDate": "2024-10-01",
+      "userId": 2,
+      "categoryId": 2
+    },
+    {
+      "id": "6",
+      "title": "Exercise",
+      "description": "Go for a 30-minute run",
+      "completed": false,
+      "dueDate": "2024-08-27",
+      "userId": 1,
+      "categoryId": 3
+    },
+    {
+      "id": "7",
+      "title": "Call mom",
+      "description": "Check in and chat with mom",
+      "completed": false,
+      "dueDate": "2024-08-28",
+      "userId": 1,
+      "categoryId": 2
+    },
+    {
+      "id": "8",
+      "title": "Prepare presentation",
+      "description": "Create slides for the upcoming team meeting",
+      "completed": false,
+      "dueDate": "2024-09-01",
+      "userId": 2,
+      "categoryId": 1
+    },
+    {
+      "id": "9",
+      "title": "Buy new shoes",
+      "description": "Purchase running shoes online",
+      "completed": false,
+      "dueDate": "2024-09-10",
+      "userId": 2,
+      "categoryId": 2
+    },
+    {
+      "id": "10",
+      "title": "Organize closet",
+      "description": "Sort out clothes and donate unused items",
+      "completed": "true",
+      "dueDate": "2024-09-12",
+      "userId": 1,
+      "categoryId": 2
+    },
+    {
+      "id": "11",
+      "title": "Clean the house",
+      "description": "Vacuum, dust, and clean bathrooms",
+      "completed": false,
+      "dueDate": "2024-09-07",
+      "userId": 2,
+      "categoryId": 2
+    },
+    {
+      "id": "12",
+      "title": "Update resume",
+      "description": "Revise and update the resume with recent achievements",
+      "completed": "true",
+      "dueDate": "2024-09-20",
+      "userId": 1,
+      "categoryId": 1
+    },
+    {
+      "id": "13",
+      "title": "Buy birthday gift",
+      "description": "Purchase a gift for Jane's birthday",
+      "completed": "true",
+      "dueDate": "2024-09-18",
+      "userId": 2,
+      "categoryId": 2
+    },
+    {
+      "id": "14",
+      "title": "Fix the leaking sink",
+      "description": "Call a plumber to repair the sink",
+      "completed": false,
+      "dueDate": "2024-09-25",
+      "userId": 1,
+      "categoryId": 3
+    },
+    {
+      "id": "15",
+      "title": "Schedule car maintenance",
+      "description": "Book an appointment for a car service",
+      "completed": false,
+      "dueDate": "2024-10-05",
+      "userId": 2,
+      "categoryId": 3
+    },
+    {
+      "id": "16",
+      "title": "Prepare tax documents",
+      "description": "Gather and organize documents for tax filing",
+      "completed": false,
+      "dueDate": "2024-10-10",
+      "userId": 1,
+      "categoryId": 1
+    },
+    {
+      "id": "17",
+      "title": "Plan weekend getaway",
+      "description": "Choose destination and book accommodations",
+      "completed": false,
+      "dueDate": "2024-09-30",
+      "userId": 2,
+      "categoryId": 2
+    },
+    {
+      "id": "18",
+      "title": "Learn a new language",
+      "description": "Start an online course for Spanish",
+      "completed": false,
+      "dueDate": "2024-10-15",
+      "userId": 1,
+      "categoryId": 4
+    },
+    {
+      "id": "19",
+      "title": "Write blog post",
+      "description": "Draft and publish a new post on the blog",
+      "completed": false,
+      "dueDate": "2024-09-22",
+      "userId": 2,
+      "categoryId": 1
+    },
+    {
+      "id": "20",
+      "title": "Check email",
+      "description": "Respond to important emails and organize inbox",
+      "completed": "true",
+      "dueDate": "2024-08-26",
+      "userId": 1,
+      "categoryId": 1
+    },
+    {
+      "id": 21,
+      "title": "Warm Up Exercise",
+      "description": "Do 5 10 time warm up and push up",
+      "completed": false,
+      "dueDate": "29-11-23",
+      "userId": "3",
+      "categoryId": 5
+    },
+    {
+      "id": 22,
+      "title": "learn angular",
+      "description": "Do a task on angular",
+      "completed": false,
+      "dueDate": "29-11-23",
+      "userId": "3",
+      "categoryId": "1"
+    },
+    {
+      "id": 23,
+      "title": "Eat healthy",
+      "description": "Eat a apple daily",
+      "completed": false,
+      "dueDate": "29-11-23",
+      "userId": "3",
+      "categoryId": "3"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Alice",
+      "email": "alice@example.com"
+    },
+    {
+      "id": "2",
+      "name": "Bob",
+      "email": "bob@example.com"
+    },
+    {
+      "id": "3",
+      "name": "Charlie",
+      "email": "charlie@example.com"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Work"
+    },
+    {
+      "id": "2",
+      "name": "Personal"
+    },
+    {
+      "id": "3",
+      "name": "Health"
+    },
+    {
+      "id": "4",
+      "name": "Hobbies"
+    },
+    {
+      "id": 5,
+      "name": "Excerise"
+    },
+    {
+      "id": 6,
+      "name": "Play"
+    }
+  ]
+}

@@ -1,0 +1,371 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand" href="#">Note Manager</a>
+
+            <form class="d-flex ms-auto">
+                <button class="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#addTask">Add Task</button>
+                <button class="btn btn-info" type="submit" data-bs-toggle="modal" data-bs-target="#addUser">Add User</button>
+                <button class="btn btn-warning mx-2" type="submit" data-bs-toggle="modal" data-bs-target="#addCateogory">Add Category </button>
+            </form>
+        </div>
+    </div>
+</nav>
+<form class="d-flex flex-wrap align-items-center mt-3 mx-5 gap-3">
+    <!-- User Selection -->
+    <div class="form-floating w-auto">
+        <select class="form-select" id="floatingSelectUser" aria-label="Floating label select example" name="user"
+            [(ngModel)]="selectedUserId" style="width: auto; min-width: 200px;">
+            <option *ngFor="let user of users" [ngValue]="user.id">{{ user.name }}</option>
+
+        </select>
+        <label for="floatingSelectUser">Select User Name</label>
+    </div>
+
+    <!-- Category Selection -->
+    <div class="form-floating w-auto">
+        <select class="form-select" id="floatingSelectCategory" aria-label="Floating label select example"
+            name="category" [(ngModel)]="selectedcategoryId" style="width: auto; min-width: 200px;">
+            @for (category of categories; track $index) {
+            <option [ngValue]="category.id">{{ category.name }}</option>
+            }
+        </select>
+        <label for="floatingSelectCategory">Select Category</label>
+    </div>
+
+    <!-- Search Button -->
+    <div>
+        <button type="submit" class="btn btn-primary btn-lg"
+            style="height: calc(3.5rem + 2px); width: auto; min-width: 150px;" (click)="getAllTask()">
+            Search
+        </button>
+    </div>
+</form>
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-6">
+            <h4 class="text-center">Inprogress</h4>
+            <hr />
+            <div *ngFor="let task of inprogressTask; let i = index" class="card">
+                <div class="card-body">
+                    <div class="ms-auto">
+                        {{ task.title }}
+
+                        <!-- View Button -->
+                        <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                            (click)="selectTask(task)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                <path
+                                    d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                            </svg>
+                        </button>
+
+                        <!-- Edit Button -->
+                        <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#editform"
+                            (click)="selectTask(task)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path
+                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                <path fill-rule="evenodd"
+                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                            </svg>
+                        </button>
+
+                        <!-- Delete Button -->
+                        <button class="btn" (click)="deleteTask(task)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-trash3" viewBox="0 0 16 16">
+                                <path
+                                    d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-6">
+            <h4 class="text-center">Completed</h4>
+            <hr />
+
+            <div *ngFor="let task of completedTask; let i = index" class="card">
+                <div class="card-body">
+                    <div class="ms-auto">
+                        {{ task.title }}
+
+                        <!-- View Button -->
+                        <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                            (click)="selectTask(task)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                <path
+                                    d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                            </svg>
+                        </button>
+
+                        <!-- Edit Button -->
+                        <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#editform"
+                            (click)="selectTask(task)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path
+                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                <path fill-rule="evenodd"
+                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                            </svg>
+                        </button>
+
+                        <!-- Delete Button -->
+                        <button class="btn" (click)="deleteTask(task)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-trash3" viewBox="0 0 16 16">
+                                <path
+                                    d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--View  Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Task Detail</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <fieldset disabled>
+
+                        <div class="mb-3">
+                            Title
+
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                [value]="selectedTask?.title">
+
+                        </div>
+                        <div class="mb-3">
+                            Description
+
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                [value]="selectedTask?.description">
+                        </div>
+                        <div class="mb-3">
+                            Task Statis
+
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                [value]="(selectedTask?.completed == false) ? 'In Progress' : 'Completed'">
+                        </div>
+
+                        <div class="mb-3">
+                            Due Date
+
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                [value]="selectedTask?.dueDate">
+                        </div>
+                    </fieldset>
+
+
+                </form>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Edit  Modal -->
+<div class="modal fade" id="editform" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Task Detail</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="updateTaskForm" (ngSubmit)="updateTask()">
+
+                    <div class="mb-3">
+                        Title
+
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            formControlName="title">
+
+                    </div>
+                    <div class="mb-3">
+                        Description
+
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            formControlName="description">
+                    </div>
+                    <div class="mb-3">
+                        Task Statis
+
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            formControlName="completed">
+                    </div>
+
+                    <div class="mb-3">
+                        Due Date
+
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            formControlName="dueDate">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
+                    </div>
+
+
+
+                </form>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Add Task   Modal -->
+<div class="modal fade" id="addTask" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Task Detail</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="NewAddTaskForm" (ngSubmit)="addNewTask()">
+                    <div class="mb-3">
+                        Title
+
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="title">
+
+                    </div>
+                    <div class="mb-3">
+                        Description
+
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="description">
+                    </div>
+
+                    <div class="mb-3">
+                        Due Date
+
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="dueDate">
+                    </div>
+                    <div class="mb-3">
+                        User
+
+                        <select class="form-select" id="floatingSelectUser" aria-label="Floating label select example"
+                            name="user" formControlName="userId">
+                            <option *ngFor="let user of users" [ngValue]="user.id">{{ user.name }}</option>
+
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        Category
+
+                        <select class="form-select" id="floatingSelectCategory"
+                            aria-label="Floating label select example" name="category" formControlName="categoryId">
+                            @for (category of categories; track $index) {
+                            <option [ngValue]="category.id">{{ category.name }}</option>
+                            }
+                        </select>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Add User   Modal -->
+<div class="modal fade" id="addUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Task Detail</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="NewAddUserForm" (ngSubmit)="addNewUser()">
+                    <div class="mb-3">
+                        Name
+
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="name">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Add cateogy   Modal -->
+<div class="modal fade" id="addCateogory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Task Detail</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="NewAddCategoryForm" (ngSubmit)="addNewCategory()">
+                    <div class="mb-3">
+                        Category
+
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="name">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
